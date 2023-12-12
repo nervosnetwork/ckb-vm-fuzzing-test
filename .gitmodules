@@ -1,7 +1,0 @@
-[submodule "deps/ckb-vm-develop"]
-	path = deps/ckb-vm-develop
-	url = https://github.com/nervosnetwork/ckb-vm.git
-[submodule "deps/ckb-vm-product"]
-	path = deps/ckb-vm-product
-	url = https://github.com/nervosnetwork/ckb-vm.git
-	branch = release-0.24

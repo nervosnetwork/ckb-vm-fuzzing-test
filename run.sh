@@ -1,6 +1,7 @@
 #!/bin/bash
 
 BRANCH="${1:-develop}"
+TYPE="${2:-full}"
 
 cd deps
 rm -rf ckb-vm
@@ -17,8 +18,14 @@ cp corpus/isa_b/* deps/ckb-vm/fuzz/corpus/isa_b/
 
 cd deps/ckb-vm
 
-cargo +nightly fuzz run -j 4 asm -- -max_total_time=57600 -timeout=2 -max_len=614400
-cargo +nightly fuzz run -j 4 isa_a -- -max_total_time=14400 -timeout=2 -max_len=614400
-cargo +nightly fuzz run -j 4 isa_b -- -max_total_time=14400 -timeout=2 -max_len=614400
+if [ "$TYPE" = "fast" ]; then
+    cargo +nightly fuzz run -j $(nproc) asm -- -max_total_time=1800 -timeout=2 -max_len=614400
+    cargo +nightly fuzz run -j $(nproc) isa_a -- -max_total_time=300 -timeout=2 -max_len=614400
+    cargo +nightly fuzz run -j $(nproc) isa_b -- -max_total_time=300 -timeout=2 -max_len=614400
+else
+    cargo +nightly fuzz run -j $(nproc) asm -- -max_total_time=57600 -timeout=2 -max_len=614400
+    cargo +nightly fuzz run -j $(nproc) isa_a -- -max_total_time=14400 -timeout=2 -max_len=614400
+    cargo +nightly fuzz run -j $(nproc) isa_b -- -max_total_time=14400 -timeout=2 -max_len=614400
+fi
 
 cd -

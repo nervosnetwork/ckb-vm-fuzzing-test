@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 
 BRANCH="${1:-develop}"
 TYPE="${2:-full}"

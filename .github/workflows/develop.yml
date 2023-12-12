@@ -10,5 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Dep
+        run: |
+          sudo apt install -y device-tree-compiler
+          rustup toolchain install nightly
+          cargo install cargo-fuzz
       - name: Run
-        run: bash run.sh develop fast
+        run: |
+          bash run.sh develop fast

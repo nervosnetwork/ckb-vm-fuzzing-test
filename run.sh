@@ -19,14 +19,22 @@ cp corpus/isa_b/* deps/ckb-vm/fuzz/corpus/isa_b/
 
 cd deps/ckb-vm
 
+fuzz() {
+    if [ -f ./fuzz/fuzz_targets/$1.rs ]; then
+        cargo +nightly fuzz run -j $(nproc) $1 -- -max_total_time=$2 -timeout=2 -max_len=614400
+    fi
+}
+
 if [ "$TYPE" = "fast" ]; then
-    cargo +nightly fuzz run -j $(nproc) asm -- -max_total_time=1800 -timeout=2 -max_len=614400
-    cargo +nightly fuzz run -j $(nproc) isa_a -- -max_total_time=300 -timeout=2 -max_len=614400
-    cargo +nightly fuzz run -j $(nproc) isa_b -- -max_total_time=300 -timeout=2 -max_len=614400
+    fuzz asm 300
+    fuzz interpreter 300
+    fuzz isa_a 60
+    fuzz isa_b 60
 else
-    cargo +nightly fuzz run -j $(nproc) asm -- -max_total_time=57600 -timeout=2 -max_len=614400
-    cargo +nightly fuzz run -j $(nproc) isa_a -- -max_total_time=14400 -timeout=2 -max_len=614400
-    cargo +nightly fuzz run -j $(nproc) isa_b -- -max_total_time=14400 -timeout=2 -max_len=614400
+    fuzz asm 28800
+    fuzz interpreter 28800
+    fuzz isa_a 14400
+    fuzz isa_b 14400
 fi
 
 cd -

@@ -10,10 +10,12 @@ git clone https://github.com/nervosnetwork/ckb-vm --depth 1 --branch ${BRANCH}
 cd -
 
 mkdir -p deps/ckb-vm/fuzz/corpus/asm
+mkdir -p deps/ckb-vm/fuzz/corpus/interpreter
 mkdir -p deps/ckb-vm/fuzz/corpus/isa_a
 mkdir -p deps/ckb-vm/fuzz/corpus/isa_b
 
 cp corpus/asm/* deps/ckb-vm/fuzz/corpus/asm/
+cp corpus/interpreter/* deps/ckb-vm/fuzz/corpus/interpreter/
 cp corpus/isa_a/* deps/ckb-vm/fuzz/corpus/isa_a/
 cp corpus/isa_b/* deps/ckb-vm/fuzz/corpus/isa_b/
 

@@ -5,11 +5,11 @@ CKB-VM fuzzing test script and corpus repository.
 
 Fuzzing test on develop branch:
 ```
-bash run.sh
+bash run.sh develop
 ```
-Fuzzing test on product branch:
+Fuzzing test on release branch:
 ```
-bash run.sh product
+bash run.sh release-0.24
 ```
 
 

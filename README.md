@@ -14,8 +14,8 @@ bash run.sh release-0.24
 
 
 ## Corpus
-After running any fuzzing tests, all corpus should be copied back to this repo via:
+After running any fuzzing tests, all corpus should be compacted via:
 ```
-bash copy-corpus.sh
+bash cmin.sh
 ```
-Add then use `git add corpus` and `git commit` to commit the corpus changes for future use.
+Then commit the corpus changes for future use.

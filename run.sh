@@ -20,20 +20,24 @@ fuzz() {
     fi
 }
 
-if [ "$TYPE" = "fast" ]; then
-    fuzz asm 300
-    fuzz interpreter 300
-    fuzz isa_a 60
-    fuzz isa_b 60
-    fuzz snapshot 60
-    fuzz snapshot2 60
-else
-    fuzz asm 28800
-    fuzz interpreter 28800
-    fuzz isa_a 14400
-    fuzz isa_b 14400
-    fuzz snapshot 14400
-    fuzz snapshot2 14400
-fi
+while true; do
+    if [ "$TYPE" = "fast" ]; then
+        fuzz asm 300
+        fuzz interpreter 300
+        fuzz isa_a 60
+        fuzz isa_b 60
+        fuzz snapshot 60
+        fuzz snapshot2 60
+    else
+        fuzz asm 28800
+        fuzz interpreter 28800
+        fuzz isa_a 14400
+        fuzz snapshot 14400
+        fuzz snapshot2 14400
+    fi
+
+    # 休眠10秒后继续下一次循环
+    sleep 10
+done
 
 cd -

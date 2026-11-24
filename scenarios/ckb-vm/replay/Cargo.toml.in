@@ -1,0 +1,10 @@
+[package]
+name = "ckb-vm-scenario-replay"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+ckb-vm = { path = "../ckb-vm", default-features = false, features = ["asm"] }
+
+[workspace]

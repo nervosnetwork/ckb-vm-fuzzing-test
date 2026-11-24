@@ -63,6 +63,10 @@ bash run.sh develop fast
 
 The first argument is the **ckb-vm Git branch or tag** passed to `git clone --branch`, not a branch of this repository.
 
+### Supplemental scenarios
+
+Run the pinned backend parity, Snapshot2 continuation and ELF/page tests on x86-64 Linux with the [supplemental scenario runner](scenarios/ckb-vm/README.md). It includes deterministic seed replay and short libFuzzer runs, alongside the existing RV64M target.
+
 ## Corpus
 
 After running any fuzzing tests, all corpus should be compacted via:
